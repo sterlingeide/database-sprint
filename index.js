@@ -31,6 +31,19 @@ app.get('/suits', function(req, res) {
     })
 })
 
+app.get('/cards', function(req, res) {
+    //get all artists
+    Card.findAll()
+    .then(function(cardslist){
+        console.log('FOUND ALL CARDS', cardslist);
+        res.render('cards', { suits: cardslist});
+    })
+    .catch(function(err){
+        console.log("ERROR", err);
+        res.json({ message: 'Error occured, Try again'});
+    })
+})
+
 
 Suit.create({
     suit: 'Clubs',
